@@ -12,8 +12,10 @@ pipeline {
         stage('Set up .NET Core') {
             steps {
                 bat '''
+                echo Downloading .NET SDK 6.0 installer
+                curl -L -o dotnet-sdk-6.0.100-win-x64.exe https://download.visualstudio.microsoft.com/download/pr/27c0ab28-4b11-4f67-8c0e-65e0d2bde2aa/1a4c31f875a539e88b2875e3b3629f5d/dotnet-sdk-6.0.100-win-x64.exe
                 echo Installing .NET SDK 6.0
-                choco install dotnet-sdk -y --version=6.0.100
+                dotnet-sdk-6.0.100-win-x64.exe /quiet /norestart
                 '''
             }
         }
