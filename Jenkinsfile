@@ -40,18 +40,17 @@ pipeline {
                 bat 'dotnet test SeleniumIde.sln --logger "trx;LogFileName=TestResults.trx"'
             }
         }
-		
-		stage('Convert TRX to JUnit XML') {
-            steps {
-                mstest testResultsFile:"**/*.trx", keepLongStdio: true
-            }
-        }
     }
 
     post {
         always {
+            // Archive the TRX test result files
             archiveArtifacts artifacts: '**/TestResults/*.trx', allowEmptyArchive: true
-            junit '**/TestResults/*.trx'
+            // Convert and publish the TRX results as JUnit results using the MSTest plugin
+            step([
+                $class: 'MSTestPublisher',
+                testResultsFile: '**/TestResults/*.trx'
+            ])
         }
     }
 }
