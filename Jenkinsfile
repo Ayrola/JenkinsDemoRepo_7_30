@@ -43,12 +43,7 @@ pipeline {
 		
 		stage('Convert TRX to JUnit XML') {
             steps {
-                bat '''
-                echo Converting TRX to JUnit XML
-                curl -L -o trx2junit.zip https://github.com/gfoidl/trx2junit/releases/download/v1.5.0/trx2junit.zip
-                powershell -command "Expand-Archive -Path trx2junit.zip -DestinationPath . -Force"
-                .\\trx2junit\\trx2junit.exe .\\SeleniumIDE\\TestResults\\TestResults.trx
-                '''
+                mstest testResultsFile:"**/*.trx", keepLongStdio: true
             }
         }
     }
