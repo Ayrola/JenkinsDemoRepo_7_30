@@ -13,7 +13,7 @@ pipeline {
             steps {
                 bat '''
                 echo Downloading .NET SDK 6.0 installer
-                curl -L -o dotnet-sdk-6.0.100-win-x64.exe https://download.visualstudio.microsoft.com/download/pr/27c0ab28-4b11-4f67-8c0e-65e0d2bde2aa/1a4c31f875a539e88b2875e3b3629f5d/dotnet-sdk-6.0.100-win-x64.exe
+                curl -L -o dotnet-sdk-6.0.132-win-x86.exe https://download.visualstudio.microsoft.com/download/pr/ad59f1d1-5f19-4474-86be-2f09ab195618/5c7a64445dae84e386bb88e1f6ac09e4/dotnet-sdk-6.0.132-win-x86.exe
                 echo Installing .NET SDK 6.0
                 dotnet-sdk-6.0.100-win-x64.exe /quiet /norestart
                 '''
